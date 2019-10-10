@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" id="Head">
+    <h1>Job Task Done By Afnan Khan</h1>
+    <button type="button" class="btn btn-secondary" onclick="UpdateData()">Press Me For Ajax Preview</button>
+
+    
+</div>
+
+<div class="col-md-4">
+    <div>
+        <div>
+            <h3 >Departments</h3>        
+        </div>
+   
+        <div >
+            <ul id="ProductList">
+
+
+               
+                <!--ListItems-->
+            </ul>
+        </div>
+    
+        <div >
+            
+        </div>
+ 
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+      
+       
+
+       
+        function UpdateData(start, count) {
+            $.ajax({
+                type: "GET",
+                url: " /Departments/index",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function (i, Department) {
+                        console.log("ssss");
+                        var ListItem = "<li>"
+                            + " Department Name :- " + Department.Name +
+                            " Address :- " + Department.Address +
+                            " Description :- " + Department.Description +
+                            " Is Active :- " + Department.Active +
+                            " NoOfUSers :- " + Department.NoOfUsers+
+                            "</li>";
+                        $('#ProductList').append(ListItem);
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    </script>
+}
